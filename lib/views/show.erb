@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Page</title>
+</head>
+<body>
+  <h1>Voici la page du potin n°<%=params['id'].to_i + 1%></h1>
+  <h3>
+    Son auteur : <%=gossip.author%></br>
+    Son gossip : <%=gossip.content%>
+  </h3>
+  <p></p>
+
+  <h4>Commentaires :</h4>
+<!-- afficher les commentaires-->
+    <% gossip.comments.each do |comment| %>
+      <p>
+        <%= comment %> 
+        </p>
+      <% end %>
+
+  <form action='/gossips/:id/' method='POST'>
+      Ton commentaire : <input type='text' name='comment'/><br/>
+      <input type='submit'/>
+    </form>
+    <p></p>
+  <a href="/gossips/<%=params['id']%>/edit/">Éditer le gossip</a></br>
+  <a href="/">Retour vers la page des gossips</a>
+</body>
+</html>

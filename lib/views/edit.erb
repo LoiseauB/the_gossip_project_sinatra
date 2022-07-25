@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Gossip</title>
+</head>
+<body>
+  <h1>Voici la page du potin n°<%=params['id'].to_i + 1%></h1>
+  <p>
+    Son auteur : <%=gossip.author%></br>
+    Son gossip : <%=gossip.content%>
+  </p>
+  <p></p>
+  <form action='/gossips/<%=params['id']%>/edit/' method='POST'>
+      Saisi ici ton pseudo :  <input type='text' name='gossip_author' value="<%=gossip.author%>"/><br/>
+      Modification du gossip : <input type='text' name='gossip_content' value="<%=gossip.content%>"/><br/>
+       
+      <input type='submit'/>
+    </form>
+</body>
+</html>
