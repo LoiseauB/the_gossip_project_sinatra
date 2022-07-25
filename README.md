@@ -7,5 +7,6 @@ In this app app you can :
   - Read some gossip📖
   - Create a gossip 🖋
   - Edit gossip✍️
+  - Comment a gossip 💬
 
 I'll use sinatra gem💎 and MVC architecture to build this app
