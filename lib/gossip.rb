@@ -4,7 +4,7 @@ class Gossip
   def initialize(user_name, content)
    @author = user_name
    @content = content
-   @comments =[]
+   @comments =["first"]
   end
 
   def save
@@ -31,7 +31,7 @@ class Gossip
   def self.update(id, author, content)
     all_gossip = Gossip.all
     all_gossip.delete_at(id)
-    all_gossip.insert(id, Gossip.new(author,content))
+    all_gossip.insert(id, Gossip.new(author,content,[]))
     CSV.open("db/gossip.csv","w") do |gossip|
       all_gossip.each do |potin|
         gossip << [potin.author, potin.content]
@@ -39,9 +39,22 @@ class Gossip
     end
   end
 
-  def comment(comment, id)
-    @comments << comment
+  def comment(comment,id)
     
+    #puts comment
+    all_gossip = Gossip.all
+    all_gossip[id].comments << comment
+    puts all_gossip[id].comments
+    puts
+    #all_gossip.delete_at(id)
+    #all_gossip.insert(id, Gossip.new(@author,@content,@comments))
+    CSV.open("db/gossip.csv","w") do |gossip|
+      all_gossip.each do |potin|
+        puts potin.comments
+        puts
+        gossip << [potin.author, potin.content, potin.comments]
+      end
+    end
   end
 
 end
